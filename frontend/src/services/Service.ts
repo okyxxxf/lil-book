@@ -19,10 +19,7 @@ export abstract class Service {
       headers : {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        login: data.login,
-        password: data.password,
-      }),
+      body: JSON.stringify(data),
     });
     
     return res;
@@ -31,10 +28,13 @@ export abstract class Service {
   public async put(id: number, data: any) {
     const res = await fetch(`${this.url}/${id}`, {
       method: "PUT",
+      headers : {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(data),
     });
 
-    return await res.json();
+    return res;
   }
 
   public async delete(id: number) {
@@ -42,6 +42,6 @@ export abstract class Service {
       method: "DELETE",
     });
 
-    return await res.json();
+    return res;
   }
 }

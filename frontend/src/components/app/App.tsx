@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AsideLayout, HeaderLayout } from '../../layouts';
 import { AuthPage } from '../../pages';
+import { AuthorsPage } from '../../pages/authors/AuthorsPage';
 
 export function App() {
   return (
@@ -10,7 +11,7 @@ export function App() {
       <Route path="/" element={<HeaderLayout/>}>
         <Route path="/" element={<AuthPage/>}/>
         <Route path="/admin" element={<AsideLayout/>}>
-          <Route path="/admin/authors" element={<>Авторы</>}/>
+          <Route path="/admin/authors" element={<AuthorsPage/>}/>
           <Route path="/admin/books" element={<>Books</>}/>
           <Route path="/admin/cities" element={<>City</>}/>
           <Route path="/admin/issuings" element={<>Issuing</>}/>
