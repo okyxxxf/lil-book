@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AsideLayout, HeaderLayout } from '../../layouts';
+import { AuthPage } from '../../pages';
 
 export function App() {
   return (
     <BrowserRouter>
      <Routes>
       <Route path="/" element={<HeaderLayout/>}>
-        <Route path="/" element={<>Auth</>}/>
+        <Route path="/" element={<AuthPage/>}/>
         <Route path="/admin" element={<AsideLayout/>}>
           <Route path="/admin/authors" element={<>Авторы</>}/>
           <Route path="/admin/books" element={<>Books</>}/>
