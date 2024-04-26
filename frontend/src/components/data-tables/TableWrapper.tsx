@@ -23,7 +23,7 @@ export const TableWrapper = styled.div`
   }
 
   & .p-datatable-thead {
-    background-color: #A0AEC0;
+    background-color: #D9D9D9;
   }
 
   & .p-paginator {

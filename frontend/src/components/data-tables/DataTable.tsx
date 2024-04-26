@@ -2,7 +2,7 @@ import { DataTable as Table } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { TableWrapper } from "./TableWrapper";
 import { column } from "../../types";
-import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Flex } from '@chakra-ui/react';
 import { CiEdit } from "react-icons/ci";
 
 type DataTableProps = {
@@ -21,10 +21,16 @@ export function DataTable({columns, data, handleCreate, handleDelete, handleEdit
           <Column key={field} field={field} header={header} sortable></Column>
         ))}
         <Column body={(rowData) => (
-              <ButtonGroup>
-                <Button colorScheme="blue" onClick={() => handleCreate()}>+</Button>
-                <Button colorScheme="red" onClick={() => handleDelete(rowData)}>-</Button>
-                <Button colorScheme="yellow" onClick={() => handleEdit(rowData)}><CiEdit/></Button>
+              <ButtonGroup cursor="pointer">
+                <Flex bg="#3182CE" borderRadius="5px" color="white" w="24px" h="24px" align="center" justify="center" onClick={() => handleCreate()}>
+                  +
+                </Flex>
+                <Flex bg="#FF5551" borderRadius="5px" color="white" w="24px" h="24px" align="center" justify="center" onClick={() => handleDelete(rowData)}>
+                  -
+                </Flex>
+                <Flex bg="#FFCE51" borderRadius="5px" w="24px" h="24px" align="center" justify="center" onClick={() => handleEdit(rowData)}>
+                  <CiEdit size="18px" fill="white"/>
+                </Flex>
               </ButtonGroup>
             )}></Column>
       </Table>

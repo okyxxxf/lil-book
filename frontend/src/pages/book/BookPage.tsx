@@ -130,7 +130,7 @@ export function BooksPage() {
         </Flex>
         <Flex w="100%" gap="20px" justify="end">
           {isOpenToggleColumns ? (
-          <VStack bg="gray.100" p="20px" align="stretch" h="min-content">
+          <VStack bg="#D9D9D9" p="20px" align="stretch" h="min-content">
             {baseColumns.map(({header, field}) => (
               <Checkbox key={field} display="flex" onChange={(e) => toggleColumn({header: header, field: field}, e.target.checked)} defaultChecked>
                 {header}
