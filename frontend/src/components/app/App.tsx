@@ -1,8 +1,6 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AsideLayout, HeaderLayout } from '../../layouts';
-import { AuthPage } from '../../pages';
-import { AuthorsPage } from '../../pages/authors/AuthorsPage';
+import { AuthPage, BooksPage, AuthorsPage } from '../../pages';
 
 export function App() {
   return (
@@ -12,7 +10,7 @@ export function App() {
         <Route path="/" element={<AuthPage/>}/>
         <Route path="/admin" element={<AsideLayout/>}>
           <Route path="/admin/authors" element={<AuthorsPage/>}/>
-          <Route path="/admin/books" element={<>Books</>}/>
+          <Route path="/admin/books" element={<BooksPage/>}/>
           <Route path="/admin/cities" element={<>City</>}/>
           <Route path="/admin/issuings" element={<>Issuing</>}/>
           <Route path="/admin/library-cards" element={<>Lib cards</>}/>
