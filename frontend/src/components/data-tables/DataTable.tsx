@@ -2,7 +2,7 @@ import { DataTable as Table } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { TableWrapper } from "./TableWrapper";
 import { column } from "../../types";
-import { Box, Button, ButtonGroup, Flex } from '@chakra-ui/react';
+import { ButtonGroup, Flex } from '@chakra-ui/react';
 import { CiEdit } from "react-icons/ci";
 
 type DataTableProps = {
