@@ -1,56 +1,62 @@
 import { Box, Checkbox, Flex, Input, InputGroup, InputLeftElement, Text, VStack } from "@chakra-ui/react";
-import { PublisherModal, DataTable } from "../../components";
+import { LibraryCardModal, DataTable } from "../../components";
 import { FaSearch } from "react-icons/fa";
 import { AiOutlineFilter } from "react-icons/ai";
 import { useEffect, useState } from "react";
-import { publisher, column } from "../../types";
-import { CityService, PublisherService } from "../../services"; 
+import { libraryCard, column } from "../../types";
+import { LibraryCardService } from "../../services"; 
 
-const publisherService = new PublisherService();
-const citiesService = new CityService();
+const libraryCardService = new LibraryCardService();
 const baseColumns = [
-  { field: "name", header: "Название" },
-  { field: "cityId", header: "Город" },
+  { field: "dateCreated", header: "Дата создания" },
+  { field: "reader", header: "Читатель" },
 ];
 
-export function PublishersPage() {
+export function LibraryCardsPage() {
   const [isOpenToggleColumns, setIsOpenToggleColumns] = useState<boolean>(false);
   const [columns, setColumns] = useState<column[]>();
-  const [basePublishers, setBasePublishers] = useState<publisher[]>();
-  const [publishers, setPublishers] = useState<publisher[]>();
+  const [baseLibraryCards, setBaseLibraryCards] = useState<libraryCard[]>();
+  const [libraryCards, setLibraryCards] = useState<libraryCard[]>();
   const [search, setSearch] = useState<string>();
-  const [selectedPublisher, setSelectedPublisher] = useState<publisher | null>(null);
+  const [selectedLibraryCard, setSelectedLibraryCard] = useState<libraryCard | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const formatPublishers = async (publishers: publisher[]) => {
-    const formattedPublishers = await Promise.all(
-      publishers.map(async (publisher) => {
-        const city = await citiesService.getById(+publisher.cityId);
+  const formatLibraryCards = (libraryCards: libraryCard[]) => {
+    const formattedLibraryCards = 
+      libraryCards.map( (libraryCard) => {
+        const {reader} = libraryCard;
+        if (typeof reader === "string") return ({
+          id: libraryCard.id,
+          dateCreated: libraryCard.dateCreated,
+          reader: reader,
+          readerId: libraryCard.readerId,
+        });
         return ({
-          name: publisher.name,
-          cityId: city.name,
+          id: libraryCard.id,
+          dateCreated: libraryCard.dateCreated,
+          reader: reader?.firstName + " " + reader?.lastName,
+          readerId: reader?.id,
         })
       })
-    );
-    return formattedPublishers;
+    return formattedLibraryCards;
   }
 
-  const updatePublishers = async () => {
-    const publishers = await publisherService.get();
-    const formattedPublishers = await formatPublishers(publishers);
-    setBasePublishers(formattedPublishers);
+  const updateLibraryCards = async () => {
+    const libraryCards = await libraryCardService.get();
+    const formattedLibraryCards = formatLibraryCards(libraryCards);
+    setBaseLibraryCards(formattedLibraryCards);
     setColumns(baseColumns);
-    setPublishers(basePublishers);
+    setLibraryCards(baseLibraryCards);
   }
 
-  const handleEdit = (publisher: publisher) => {
-    setSelectedPublisher(publisher);
+  const handleEdit = (libraryCard: libraryCard) => {
+    setSelectedLibraryCard(libraryCard);
     setIsOpen(true);
   }
 
-  const handleDelete = (publisher: publisher) => {
-    publisherService.delete(publisher.id || 0).then(() => {
-      updatePublishers();
+  const handleDelete = (libraryCard: libraryCard) => {
+    libraryCardService.delete(libraryCard.id || 0).then(() => {
+      updateLibraryCards();
     })
   }
 
@@ -59,31 +65,35 @@ export function PublishersPage() {
   }
 
   const handleAdd = () => {
-    setSelectedPublisher(null);
+    setSelectedLibraryCard(null);
     setIsOpen(true);
   }
 
-  const handleSave = (id: number, newPublisher: publisher) => {
-    if (selectedPublisher) publisherService.put(id, newPublisher).then(() => updatePublishers());
-    if (!selectedPublisher) publisherService.post(newPublisher).then(() => updatePublishers());
+  const handleSave = (id: number, newLibraryCard: libraryCard) => {
+    if (selectedLibraryCard) {
+      if (typeof newLibraryCard.reader === "string") libraryCardService.put(id, 
+        {dataCreated: newLibraryCard.dateCreated, readerId: newLibraryCard.readerId}
+      ).then(() => updateLibraryCards());
+    }
+    if (!selectedLibraryCard) libraryCardService.post(newLibraryCard).then(() => updateLibraryCards());
     setIsOpen(false);
   }
 
   useEffect(() => {
-    updatePublishers();
+    updateLibraryCards();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (!basePublishers) return;
-    if (!search) return setPublishers(basePublishers);
+    if (!baseLibraryCards) return;
+    if (!search) return setLibraryCards(baseLibraryCards);
 
-    const filteredPublishers = basePublishers.filter((p) =>
-      p.name.indexOf(search) !== -1
+    const filteredLibraryCards = baseLibraryCards.filter((lc) =>
+      lc.dateCreated.toLocaleString().indexOf(search) !== -1
     );
 
-    setPublishers(filteredPublishers);
-  }, [basePublishers, search]);
+    setLibraryCards(filteredLibraryCards);
+  }, [baseLibraryCards, search]);
 
   const handleOpenToggleColumns = () => {
     setIsOpenToggleColumns(!isOpenToggleColumns);
@@ -129,13 +139,13 @@ export function PublishersPage() {
               </Checkbox>
             ))}
           </VStack>
-          ) :null}
+          ) : null}
           <Flex w="100%" justify="center">
-            <DataTable columns={columns || []} data={publishers || []} handleCreate={handleAdd} handleDelete={handleDelete} handleEdit={handleEdit}/> 
+            <DataTable columns={columns || []} data={libraryCards || []} handleCreate={handleAdd} handleDelete={handleDelete} handleEdit={handleEdit}/> 
           </Flex>
         </Flex>
       </Flex>
-      <PublisherModal isOpen={isOpen} onClose={handleClose} publisher={selectedPublisher} onSave={handleSave} />
+      <LibraryCardModal isOpen={isOpen} onClose={handleClose} libraryCard={selectedLibraryCard} onSave={handleSave} />
     </Box>
   );
 }
