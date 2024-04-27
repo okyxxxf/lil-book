@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AsideLayout, HeaderLayout } from '../../layouts';
-import { AuthPage, BooksPage, AuthorsPage, CityPage } from '../../pages';
+import { AuthPage, BooksPage, AuthorsPage, CityPage, PublishersPage } from '../../pages';
 import { Box } from '@chakra-ui/react';
 
 export function App() {
@@ -16,7 +16,7 @@ export function App() {
             <Route path="/admin/cities" element={<CityPage/>}/>
             <Route path="/admin/issuings" element={<>Issuing</>}/>
             <Route path="/admin/library-cards" element={<>Lib cards</>}/>
-            <Route path="/admin/publishers" element={<>Publisher</>}/>
+            <Route path="/admin/publishers" element={<PublishersPage/>}/>
             <Route path="/admin/readers" element={<>Reader</>}/>
             <Route path="/admin/booking" element={<>Booking</>}/>
           </Route>
