@@ -7,7 +7,8 @@ builder.Services.AddCors(options => options.AddPolicy(corsName,
     {
         policy
         .AllowAnyOrigin()
-        .WithHeaders("Content-Type");
+        .WithHeaders("Content-Type")
+        .WithMethods("PUT", "DELETE");
     }));
 
 builder.Services.AddControllers();
