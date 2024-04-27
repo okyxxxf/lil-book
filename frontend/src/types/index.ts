@@ -6,3 +6,4 @@ export * from "./city";
 export * from "./reader";
 export * from "./libraryCard";
 export * from "./booking";
+export * from "./issuing";

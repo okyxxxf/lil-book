@@ -5,3 +5,4 @@ export * from "./PublisherModal";
 export * from "./ReadersModal";
 export * from "./LibraryCardModal";
 export * from "./BookingModal";
+export * from "./IssuingModal";

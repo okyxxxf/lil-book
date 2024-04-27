@@ -6,3 +6,4 @@ export * from "./CityService";
 export * from "./ReaderService";
 export * from "./LibraryCardService";
 export * from "./BookingService";
+export * from "./IssuingService";
