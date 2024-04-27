@@ -5,3 +5,4 @@ export * from "./publisher";
 export * from "./city";
 export * from "./reader";
 export * from "./libraryCard";
+export * from "./booking";
