@@ -30,6 +30,7 @@ export function BookingsPage() {
         const book = await bookService.getById(+booking.bookId);
         return ({
           ...booking,
+          date: new Date(booking.date).toLocaleDateString(),
           bookId: book.name,
         })
       })

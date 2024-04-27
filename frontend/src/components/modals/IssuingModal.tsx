@@ -48,11 +48,11 @@ export function IssuingModal({ isOpen, onClose, issuing, onSave }: IssuingModalP
         <ModalBody>
           <FormControl>
             <FormLabel>Дата выдачи</FormLabel>
-            <Input value={newIssuing.dateIssue.toLocaleString()} onChange={(e) => setNewIssuing({ ...newIssuing, dateIssue: e.target.value })} />
+            <Input type="date" value={newIssuing.dateIssue.toLocaleString()} onChange={(e) => setNewIssuing({ ...newIssuing, dateIssue: e.target.value })} />
           </FormControl>
           <FormControl mt={4}>
             <FormLabel>Дата возврата</FormLabel>
-            <Input value={newIssuing.dateReturn.toLocaleString()} onChange={(e) => setNewIssuing({ ...newIssuing, dateReturn: e.target.value })} />
+            <Input type="date" value={newIssuing.dateReturn.toLocaleString()} onChange={(e) => setNewIssuing({ ...newIssuing, dateReturn: e.target.value })} />
           </FormControl>
           <FormControl mt={4}>
             <FormLabel>Книга</FormLabel>

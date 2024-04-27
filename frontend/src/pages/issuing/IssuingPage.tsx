@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Box, Checkbox, Flex, Input, InputGroup, InputLeftElement, Text, VStack } from "@chakra-ui/react";
-import { IssuingModal, DataTable } from "../../components"; // Предположим, что у вас есть компонент IssuingModal
+import { IssuingModal, DataTable } from "../../components";
 import { FaSearch } from "react-icons/fa";
 import { AiOutlineFilter } from "react-icons/ai";
-import { issuing, column } from "../../types"; // Предположим, что у вас есть тип данных issuing
-import { BookService, IssuingService } from "../../services"; // Предположим, что у вас есть сервис IssuingService
+import { issuing, column } from "../../types"; 
+import { BookService, IssuingService } from "../../services";
 
 const issuingService = new IssuingService();
 const bookService = new BookService();
@@ -31,6 +31,8 @@ export function IssuingPage() {
         const book = await bookService.getById(+issuing.bookId);
         return ({
           ...issuing,
+          dateIssue: new Date(issuing.dateIssue).toLocaleDateString(),
+          dateReturn: new Date(issuing.dateReturn).toLocaleDateString(),
           bookId: book.name,
         })
       })

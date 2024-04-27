@@ -44,7 +44,7 @@ export function LibraryCardModal({ isOpen, onClose, libraryCard, onSave }: Libra
         <ModalBody>
           <FormControl>
             <FormLabel>Дата создания</FormLabel>
-            <Input value={newLibraryCard.dateCreated.toLocaleString()} onChange={(e) => setNewLibraryCard({ ...newLibraryCard, dateCreated: e.target.value })} />
+            <Input type="date" value={newLibraryCard.dateCreated.toLocaleString()} onChange={(e) => setNewLibraryCard({ ...newLibraryCard, dateCreated: e.target.value })} />
           </FormControl>
           <FormControl mt={4}>
             <FormLabel>Читатель</FormLabel>

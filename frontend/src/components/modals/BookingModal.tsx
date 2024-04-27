@@ -45,7 +45,7 @@ export function BookingModal({ isOpen, onClose, booking, onSave }: BookingModalP
         <ModalBody>
           <FormControl>
             <FormLabel>Дата</FormLabel>
-            <Input value={newBooking.date.toLocaleString()} onChange={(e) => setNewBooking({ ...newBooking, date: e.target.value })} />
+            <Input type="date" value={newBooking.date.toLocaleString()} onChange={(e) => setNewBooking({ ...newBooking, date: e.target.value })} />
           </FormControl>
           <FormControl mt={4}>
             <FormLabel>Книга</FormLabel>

@@ -27,13 +27,13 @@ export function LibraryCardsPage() {
         const {reader} = libraryCard;
         if (typeof reader === "string") return ({
           id: libraryCard.id,
-          dateCreated: libraryCard.dateCreated,
+          dateCreated: new Date(libraryCard.dateCreated).toLocaleDateString(),
           reader: reader,
           readerId: libraryCard.readerId,
         });
         return ({
           id: libraryCard.id,
-          dateCreated: libraryCard.dateCreated,
+          dateCreated: new Date(libraryCard.dateCreated).toLocaleDateString(),
           reader: reader?.firstName + " " + reader?.lastName,
           readerId: reader?.id,
         })
