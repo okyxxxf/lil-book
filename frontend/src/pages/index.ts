@@ -3,3 +3,4 @@ export * from "./authors";
 export * from "./book";
 export * from "./city";
 export * from "./publisher";
+export * from "./reader";
