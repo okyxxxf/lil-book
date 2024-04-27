@@ -10,7 +10,7 @@ const publisherService = new PublisherService();
 const citiesService = new CityService();
 const baseColumns = [
   { field: "name", header: "Название" },
-  { field: "cityId", header: "Город" },
+  { field: "city", header: "Город" },
 ];
 
 export function PublishersPage() {
@@ -27,8 +27,10 @@ export function PublishersPage() {
       publishers.map(async (publisher) => {
         const city = await citiesService.getById(+publisher.cityId);
         return ({
+          id: publisher.id,
           name: publisher.name,
-          cityId: city.name,
+          cityId: publisher.cityId,
+          city: city.name,
         })
       })
     );

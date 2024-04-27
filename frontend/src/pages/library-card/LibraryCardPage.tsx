@@ -72,7 +72,7 @@ export function LibraryCardsPage() {
   const handleSave = (id: number, newLibraryCard: libraryCard) => {
     if (selectedLibraryCard) {
       if (typeof newLibraryCard.reader === "string") libraryCardService.put(id, 
-        {dataCreated: newLibraryCard.dateCreated, readerId: newLibraryCard.readerId}
+        {id: id, dataCreated: newLibraryCard.dateCreated, readerId: newLibraryCard.readerId}
       ).then(() => updateLibraryCards());
     }
     if (!selectedLibraryCard) libraryCardService.post(newLibraryCard).then(() => updateLibraryCards());

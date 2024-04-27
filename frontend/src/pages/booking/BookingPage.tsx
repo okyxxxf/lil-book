@@ -11,7 +11,7 @@ const bookService = new BookService();
 
 const baseColumns = [
   { field: "date", header: "Дата" },
-  { field: "bookId", header: "Книга" },
+  { field: "book", header: "Книга" },
   { field: "libraryCardId", header: "ID библиотечного билета" },
 ];
 
@@ -31,7 +31,7 @@ export function BookingsPage() {
         return ({
           ...booking,
           date: new Date(booking.date).toLocaleDateString(),
-          bookId: book.name,
+          book: book.name,
         })
       })
     );
@@ -67,7 +67,7 @@ export function BookingsPage() {
   }
 
   const handleSave = (id: number, newBooking: booking) => {
-    if (selectedBooking) bookingService.put(id, newBooking).then(() => updateBookings());
+    if (selectedBooking) bookingService.put(id, {...newBooking }).then(() => updateBookings());
     if (!selectedBooking) bookingService.post(newBooking).then(() => updateBookings());
     setIsOpen(false);
   }

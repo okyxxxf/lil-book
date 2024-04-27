@@ -15,8 +15,8 @@ const baseColumns = [
   { field: "year", header: "Год издания" },
   { field: "price", header: "Цена"},
   { field: "count", header: "Колличество"},
-  { field: "authorId", header: "Автор"},
-  { field: "publisherId", header: "Издательство"},
+  { field: "author", header: "Автор"},
+  { field: "publisher", header: "Издательство"},
 ];
 
 export function BooksPage() {
@@ -35,8 +35,8 @@ export function BooksPage() {
         const publisher = await publisherService.getById(+book.publisherId);
         return ({
           ...book,
-          authorId: author.firstName + " " + author.lastName,
-          publisherId: publisher.name,
+          author: author.firstName + " " + author.lastName,
+          publisher: publisher.name,
         })
       })
     );

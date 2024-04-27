@@ -1,5 +1,6 @@
 export type  publisher = {
   id?: number;
   name: string;
-  cityId: number | string;
+  cityId: number;
+  city: string;
 }

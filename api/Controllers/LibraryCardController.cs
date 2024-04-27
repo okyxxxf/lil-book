@@ -88,15 +88,15 @@ namespace api.Controllers
 
             using (AppDbContext db = new())
             {
-                if (await db.LibraryCard.FirstOrDefaultAsync(
-                    libraryCardDb =>
-                        libraryCardDb.Reader.Id == libraryCardDTO.ReaderId
-                ) is not null)
-                {
-                    ModelState.AddModelError("Custom Error", "Library Card already exists!");
+                // if (await db.LibraryCard.FirstOrDefaultAsync(
+                //     libraryCardDb =>
+                //         libraryCardDb.Reader.Id == libraryCardDTO.ReaderId
+                // ) is not null)
+                // {
+                //     ModelState.AddModelError("Custom Error", "Library Card already exists!");
 
-                    return BadRequest(ModelState);
-                }
+                //     return BadRequest(ModelState);
+                // }
 
                 LibraryCard? libraryCardToUpdate = await db.LibraryCard.FirstOrDefaultAsync(libraryCardDb => libraryCardDb.Id == id);
 

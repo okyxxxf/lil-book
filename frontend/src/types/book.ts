@@ -4,6 +4,8 @@ export type book = {
   year: number;
   price: number;
   count: number;
-  authorId: number | string;
-  publisherId: number | string;
+  authorId: number;
+  author?: string;
+  publisherId: number;
+  publisher?: string;
 }

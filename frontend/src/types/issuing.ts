@@ -2,6 +2,7 @@ export type issuing = {
   id?: number;
   dateIssue: Date | string;
   dateReturn: Date | string;
-  bookId: string | number;
+  bookId: number;
+  book: string;
   libraryCardId: string | number;
 }

@@ -16,6 +16,7 @@ export function PublisherModal({ isOpen, onClose, publisher, onSave }: Publisher
   const [newPublisher, setNewPublisher] = useState<publisher>({
     name: "",
     cityId: 0,
+    city: "",
   });
   const [oldPublisherId, setOldPublisherId] = useState<number>();
   const [cities, setCities] = useState<city[]>([]);
@@ -24,6 +25,7 @@ export function PublisherModal({ isOpen, onClose, publisher, onSave }: Publisher
     setNewPublisher(publisher || {
       name: "",
       cityId: 0,
+      city: "",
     });
     setOldPublisherId(publisher?.id);
     

@@ -12,7 +12,7 @@ const bookService = new BookService();
 const baseColumns = [
   { field: "dateIssue", header: "Дата выдачи" },
   { field: "dateReturn", header: "Дата возврата" },
-  { field: "bookId", header: "Книга" },
+  { field: "book", header: "Книга" },
   { field: "libraryCardId", header: "ID библиотечного билета" },
 ];
 
@@ -33,7 +33,7 @@ export function IssuingPage() {
           ...issuing,
           dateIssue: new Date(issuing.dateIssue).toLocaleDateString(),
           dateReturn: new Date(issuing.dateReturn).toLocaleDateString(),
-          bookId: book.name,
+          book: book.name,
         })
       })
     );

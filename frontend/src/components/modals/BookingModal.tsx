@@ -14,8 +14,9 @@ type BookingModalProps = {
 export function BookingModal({ isOpen, onClose, booking, onSave }: BookingModalProps) {
   const [newBooking, setNewBooking] = useState<booking>({
     date: "",
-    bookId: "",
-    libraryCardId: "",
+    bookId: 0,
+    libraryCardId: 0,
+    book: ""
   });
   const [oldBookingId, setOldBookingId] = useState<number>();
   const [books, setBooks] = useState<book[]>([]);
@@ -23,8 +24,9 @@ export function BookingModal({ isOpen, onClose, booking, onSave }: BookingModalP
   useEffect(() => {
     setNewBooking(booking || {
       date: "",
-      bookId: "",
-      libraryCardId: "",
+      bookId: 0,
+      libraryCardId: 0,
+      book: ""
     });
     setOldBookingId(booking?.id);
     
@@ -62,7 +64,7 @@ export function BookingModal({ isOpen, onClose, booking, onSave }: BookingModalP
           </FormControl>
           <FormControl mt={4}>
             <FormLabel>Библиотечный билет(id)</FormLabel>
-            <Input value={newBooking.libraryCardId} onChange={(e) => setNewBooking({ ...newBooking, libraryCardId: e.target.value })} disabled={!!booking}/>
+            <Input type="number" value={newBooking.libraryCardId} onChange={(e) => setNewBooking({ ...newBooking, libraryCardId: +e.target.value })} disabled={!!booking}/>
           </FormControl>
         </ModalBody>
         <ModalFooter>

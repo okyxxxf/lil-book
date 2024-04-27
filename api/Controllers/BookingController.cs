@@ -95,16 +95,16 @@ namespace api.Controllers
 
             using (AppDbContext db = new())
             {
-                if (await db.Booking.FirstOrDefaultAsync(
-                    bookingDb =>
-                        bookingDb.BookId == bookingDTO.BookId &&
-                        bookingDb.LibraryCardId == bookingDTO.LibraryCardId
-                ) is not null)
-                {
-                    ModelState.AddModelError("Custom Error", "Booking already exists!");
+                // if (await db.Booking.FirstOrDefaultAsync(
+                //     bookingDb =>
+                //         bookingDb.BookId == bookingDTO.BookId &&
+                //         bookingDb.LibraryCardId == bookingDTO.LibraryCardId
+                // ) is not null)
+                // {
+                //     ModelState.AddModelError("Custom Error", "Booking already exists!");
 
-                    return BadRequest(ModelState);
-                }
+                //     return BadRequest(ModelState);
+                // }
 
                 Booking? bookingToUpdate = await db.Booking.FirstOrDefaultAsync(bookingDb => bookingDb.Id == id);
 

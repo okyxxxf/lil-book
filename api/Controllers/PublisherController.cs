@@ -96,15 +96,15 @@ namespace api.Controllers
 
             using (AppDbContext db = new())
             {
-                if (await db.Publisher.FirstOrDefaultAsync(
-                    publisherDb =>
-                        publisherDb.Name.ToLower() == publisherDTO.Name.ToLower()
-                ) is not null)
-                {
-                    ModelState.AddModelError("Custom Error", "Publisher already exists!");
+                // if (await db.Publisher.FirstOrDefaultAsync(
+                //     publisherDb =>
+                //         publisherDb.Name.ToLower() == publisherDTO.Name.ToLower()
+                // ) is not null)
+                // {
+                //     ModelState.AddModelError("Custom Error", "Publisher already exists!");
 
-                    return BadRequest(ModelState);
-                }
+                //     return BadRequest(ModelState);
+                // }
 
                 Publisher? publisherToUpdate = await db.Publisher.FirstOrDefaultAsync(publisherDb => publisherDb.Id == id);
 

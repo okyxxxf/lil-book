@@ -96,16 +96,16 @@ namespace api.Controllers
 
             using (AppDbContext db = new())
             {
-                if (await db.Issuing.FirstOrDefaultAsync(
-                    issuingDb =>
-                        issuingDb.BookId == issuingDTO.BookId &&
-                        issuingDb.LibraryCardId == issuingDTO.LibraryCardId
-                ) is not null)
-                {
-                    ModelState.AddModelError("Custom Error", "Issuing already exists!");
+                // if (await db.Issuing.FirstOrDefaultAsync(
+                //     issuingDb =>
+                //         issuingDb.BookId == issuingDTO.BookId &&
+                //         issuingDb.LibraryCardId == issuingDTO.LibraryCardId
+                // ) is not null)
+                // {
+                //     ModelState.AddModelError("Custom Error", "Issuing already exists!");
 
-                    return BadRequest(ModelState);
-                }
+                //     return BadRequest(ModelState);
+                // }
 
                 Issuing? issuingToUpdate = await db.Issuing.FirstOrDefaultAsync(issuingDb => issuingDb.Id == id);
 

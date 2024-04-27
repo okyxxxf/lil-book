@@ -16,7 +16,8 @@ export function IssuingModal({ isOpen, onClose, issuing, onSave }: IssuingModalP
   const [newIssuing, setNewIssuing] = useState<issuing>({
     dateIssue: "",
     dateReturn: "",
-    bookId: "",
+    bookId: 0,
+    book: "",
     libraryCardId: "",
   });
   const [oldIssuingId, setOldIssuingId] = useState<number>();
@@ -26,8 +27,9 @@ export function IssuingModal({ isOpen, onClose, issuing, onSave }: IssuingModalP
     setNewIssuing(issuing || {
       dateIssue: "",
       dateReturn: "",
-      bookId: "",
+      bookId: 0,
       libraryCardId: "",
+      book: "",
     });
     setOldIssuingId(issuing?.id);
     
