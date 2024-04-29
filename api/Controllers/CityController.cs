@@ -121,6 +121,16 @@ namespace api.Controllers
 
                 if (city is null) return NotFound();
 
+                IQueryable<Publisher>? publisherList = db.Publisher.Where(publisherDb => publisherDb.CityId == city.Id);
+
+                if (publisherList is not null)
+                {
+                    foreach(Publisher publisher in publisherList)
+                    {
+                        publisher.CityId = null;
+                    }
+                }
+
                 db.Remove(city);
 
                 await db.SaveChangesAsync();
